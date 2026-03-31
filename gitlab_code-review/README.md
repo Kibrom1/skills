@@ -1,13 +1,13 @@
 # Code Review Skill
 
-An AI-powered code review skill for Claude Cowork that reviews code across multiple stacks and automatically posts reviews directly to GitHub PRs.
+An AI-powered code review skill for Claude Cowork that reviews code across multiple stacks and automatically posts reviews directly to GitLab MRs.
 
 ## What it does
 
-- Reviews any file, directory, git diff, or GitHub PR
+- Reviews any file, directory, git diff, or GitLab MR
 - Auto-detects the tech stack and applies the right heuristics
 - Categorizes findings as 🔴 Blockers, 🟡 Should-fix, or 🔵 Nice-to-have
-- Automatically posts the review as a comment on GitHub PRs
+- Automatically posts the review as a comment on GitLab MRs
 
 ## Supported stacks
 
@@ -23,24 +23,24 @@ An AI-powered code review skill for Claude Cowork that reviews code across multi
 
 Just ask Claude naturally:
 
-- *"Review PR #5 in my-repo"*
+- *"Review MR #5 in my-project"*
 - *"Review my changes before I merge"*
 - *"Check the auth module in brightsteps"*
 - *"Does this code look good?"*
 
-## GitHub PR integration
+## GitLab MR integration
 
-To post reviews directly to GitHub PRs, connect the `@modelcontextprotocol/server-github` MCP server:
+To post reviews directly to GitLab MRs, connect the `@modelcontextprotocol/server-gitlab` MCP server:
 
-1. Create a GitHub Personal Access Token with **Pull requests: Read and write** permission
+1. Create a GitLab Personal Access Token with **Merge requests: Read and write** permission
 2. Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
 
 ```json
 {
   "mcpServers": {
-    "github": {
+    "gitlab": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": ["-y", "@modelcontextprotocol/server-gitlab"],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "your-token-here"
       }
@@ -55,25 +55,25 @@ To post reviews directly to GitHub PRs, connect the `@modelcontextprotocol/serve
 
 ### Step 1 — Download the `.plugin` file
 
-**Option A: From GitHub (recommended)**
-1. Go to [github.com/Kibrom1/skills](https://github.com/Kibrom1/skills)
-2. Navigate to the `code-review/` folder
-3. Click **Releases** on the right sidebar → download `code-review.plugin`
+**Option A: From GitLab (recommended)**
+1. Go to [gitlab.com/Kibrom1/skills](https://gitlab.com/Kibrom1/skills)
+2. Navigate to the `gitlab_code-review/` folder
+3. Click **Releases** on the right sidebar → download `gitlab_code-review.plugin`
 
 Or download directly with curl:
 ```bash
-curl -L -o code-review.plugin https://github.com/Kibrom1/skills/releases/latest/download/code-review.plugin
+curl -L -o gitlab_code-review.plugin https://gitlab.com/Kibrom1/skills/releases/latest/download/gitlab_code-review.plugin
 ```
 
-**Option B: Clone the repo**
+**Option B: Clone the project**
 ```bash
-git clone https://github.com/Kibrom1/skills.git
+git clone https://gitlab.com/Kibrom1/skills.git
 ```
-The `.plugin` file is in the root of the `code-review/` folder.
+The `.plugin` file is in the root of the `gitlab_code-review/` folder.
 
 ### Step 2 — Install into Claude Desktop
 
-- **macOS / Windows**: Double-click `code-review.plugin`
+- **macOS / Windows**: Double-click `gitlab_code-review.plugin`
 - **Or**: Drag and drop the file onto the Claude Desktop app icon
 
 Claude Desktop will install it automatically. No further configuration is needed.
