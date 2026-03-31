@@ -1,0 +1,12 @@
+{
+  "name": "code-review",
+  "version": "0.1.0",
+  "description": "AI-powered code reviews across multiple stacks with GitHub PR integration",
+  "author": {
+    "name": "Kibrom1"
+  },
+  "homepage": "https://github.com/Kibrom1/skills",
+  "repository": "https://github.com/Kibrom1/skills",
+  "license": "MIT",
+  "keywords": ["code-review", "github", "typescript", "python", "fastapi", "react", "java"]
+}
