@@ -53,7 +53,30 @@ To post reviews directly to GitHub PRs, connect the `@modelcontextprotocol/serve
 
 ## Installation
 
-Double-click the `.plugin` file or drag it onto Claude Desktop.
+### Step 1 — Download the `.plugin` file
+
+**Option A: From GitHub (recommended)**
+1. Go to [github.com/Kibrom1/skills](https://github.com/Kibrom1/skills)
+2. Navigate to the `code-review/` folder
+3. Click **Releases** on the right sidebar → download `code-review.plugin`
+
+Or download directly with curl:
+```bash
+curl -L -o code-review.plugin https://github.com/Kibrom1/skills/releases/latest/download/code-review.plugin
+```
+
+**Option B: Clone the repo**
+```bash
+git clone https://github.com/Kibrom1/skills.git
+```
+The `.plugin` file is in the root of the `code-review/` folder.
+
+### Step 2 — Install into Claude Desktop
+
+- **macOS / Windows**: Double-click `code-review.plugin`
+- **Or**: Drag and drop the file onto the Claude Desktop app icon
+
+Claude Desktop will install it automatically. No further configuration is needed.
 
 ## License
 
