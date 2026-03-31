@@ -1,39 +1,39 @@
-# Code Review Skill
+# 🦊 GitLab Enterprise Code Review
 
-An AI-powered code review skill for Claude Cowork that reviews code across multiple stacks and automatically posts reviews directly to GitLab MRs.
+> **An intelligent, context-aware AI agent integration for Claude Desktop that performs rigorous, multi-stack code reviews and seamlessly posts autonomous feedback directly to your Merge Requests.**
 
-## What it does
+This repository contains the `gitlab_code-review` plugin architecture. By leveraging the Model Context Protocol (MCP), Claude can autonomously read your local diffs, fetch active GitLab MR metadata, perform deep semantic code analysis, and directly publish structured notes back to your GitLab project.
 
-- Reviews any file, directory, git diff, or GitLab MR
-- Auto-detects the tech stack and applies the right heuristics
-- Categorizes findings as 🔴 Blockers, 🟡 Should-fix, or 🔵 Nice-to-have
-- Automatically posts the review as a comment on GitLab MRs
+---
 
-## Supported stacks
+## 🔥 Key Capabilities
 
-| Stack | What it checks |
-|-------|----------------|
-| TypeScript / Node | Type safety, async correctness, pnpm conventions |
-| Python / FastAPI | SQLAlchemy, Pydantic v2, JWT auth, Alembic |
-| React frontend | Hooks, TanStack Query, performance, security |
-| Python agents & bots | Temporal workflows, Telegram bots, LLM API usage |
-| Java / Spring Boot | Spring Security, JPA, transaction management |
+- **Autonomous Integration:** Automatically fetches MR diffs and publishes formatted reviews directly as GitLab MR notes.
+- **Intelligent Stack Detection:** Dynamically recognizes your repository's exact tech stack (TypeScript, Python, React, Java) and applies framework-specific best practices and heuristics.
+- **Prioritized Triage:** Every review strictly categorizes issues by severity:
+  - 🔴 **Blockers** (Security vulnerabilities, N+1 queries, race conditions)
+  - 🟡 **Should-fix** (Maintainability issues, missing test coverage)
+  - 🔵 **Nice-to-have** (Style nits, modern language features)
 
-## Usage
+---
 
-Just ask Claude naturally:
+## 💬 Natural Language Activation
 
-- *"Review MR #5 in my-project"*
-- *"Review my changes before I merge"*
-- *"Check the auth module in brightsteps"*
-- *"Does this code look good?"*
+No complex CLI commands. Simply ask Claude in plain text:
 
-## GitLab MR integration
+- *"Review MR #45 in my-project"*
+- *"Review my uncommitted changes before I push to GitLab"*
+- *"Check the auth module and execute a full security audit"*
+- *"Does this React hook logic look sound?"*
 
-To post reviews directly to GitLab MRs, connect the `@modelcontextprotocol/server-gitlab` MCP server:
+---
 
-1. Create a GitLab Personal Access Token with **Merge requests: Read and write** permission
-2. Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+## 🏗️ Model Context Protocol (MCP) Setup
+
+To allow Claude to securely read your source code and post reviews on your behalf, you must attach the official GitLab MCP server to your local environment.
+
+1. Generate a **GitLab Personal Access Token (PAT)** with the required API permissions (`api` scope).
+2. Inject it into your Claude Desktop configuration (`~/Library/Application Support/Claude/claude_desktop_config.json`):
 
 ```json
 {
@@ -42,42 +42,30 @@ To post reviews directly to GitLab MRs, connect the `@modelcontextprotocol/serve
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-gitlab"],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-token-here"
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "<YOUR_SECURE_TOKEN>",
+        "GITLAB_API_URL": "https://gitlab.com/api/v4"
       }
     }
   }
 }
 ```
+3. Restart your Claude Desktop client.
 
-3. Restart Claude Desktop
+---
 
-## Installation
+## 🚀 Easy Installation
 
-### Step 1 — Download the `.plugin` file
-
-**Option A: From GitLab (recommended)**
-1. Go to [gitlab.com/Kibrom1/skills](https://gitlab.com/Kibrom1/skills)
-2. Navigate to the `gitlab_code-review/` folder
-3. Click **Releases** on the right sidebar → download `gitlab_code-review.plugin`
-
-Or download directly with curl:
+### 1. Retrieve the Plugin
+Clone the mono-repository or download the compiled asset directly from the Releases page:
 ```bash
 curl -L -o gitlab_code-review.plugin https://gitlab.com/Kibrom1/skills/releases/latest/download/gitlab_code-review.plugin
 ```
 
-**Option B: Clone the project**
-```bash
-git clone https://gitlab.com/Kibrom1/skills.git
-```
-The `.plugin` file is in the root of the `gitlab_code-review/` folder.
+### 2. Deploy to Claude
+- **macOS / Windows**: Simply **Double-click** the local `gitlab_code-review.plugin` file.
+- **Alternative**: Drag and drop the `.plugin` file directly onto the Claude Desktop application window.
 
-### Step 2 — Install into Claude Desktop
+Claude will handle unpacking and integrating the skill module instantly. No secondary configurations are necessary.
 
-- **macOS / Windows**: Double-click `gitlab_code-review.plugin`
-- **Or**: Drag and drop the file onto the Claude Desktop app icon
-
-Claude Desktop will install it automatically. No further configuration is needed.
-
-## License
-
-MIT
+---
+*Enterprise-grade automated reviews. MIT Licensed.*
